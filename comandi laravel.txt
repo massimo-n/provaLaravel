@@ -1,0 +1,7 @@
+php artisan migration:reset
+			refresh --seed
+
+php artisan serve
+
+make model nome -m
+

@@ -21,8 +21,12 @@ class CreateEventsTable extends Migration
             $table->string('immagine');
             $table->string('descrizione');
             $table->float('prezzo');
+            $table->string('stato'); //aperto chiuso in corso ecc
             $table->string('indirizzo');
-            $table->date('dataEvento');
+            $table->integer('numero_posti_totali');
+            $table->integer('numero_posti_disponibili');
+//            $table->date('dataEventoInizio');
+//            $table->date('dataEventoFine');
             $table->date('dataCreazione');
             $table->timestamps();
 
