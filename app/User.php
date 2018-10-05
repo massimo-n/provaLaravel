@@ -13,8 +13,8 @@ class User extends Model
         return $this->belongsToMany('\App\Group');
     }
 
-    public function preferences(){
-        return $this->belongsToMany('\App\Preference');
+    public function categories(){
+        return $this->belongsToMany('\App\EventCategory');
     }
 
     public function partecipates(){
@@ -26,6 +26,10 @@ class User extends Model
     }
 
     public function favourites(){
+        return $this->belongsToMany('\App\Event');
+    }
+
+    public function review(){
         return $this->belongsToMany('\App\Event');
     }
 }

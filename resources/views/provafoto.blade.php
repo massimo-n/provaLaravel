@@ -15,11 +15,10 @@
 
 <div class="flex-center position-ref full-height">
 
-    @foreach(events as $evento )
+    @foreach($event as $evento )
     <tr>
-        <td>{{$evento->id}}</td>
         <td>{{$evento->titolo}}</td>
-        <img>{{$evento->immagine}}
+        <img src={{$evento->immagine}}>
     </tr>
 
     @endforeach

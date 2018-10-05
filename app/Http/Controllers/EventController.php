@@ -34,7 +34,7 @@ class eventController extends Controller
         //$evento->id = $request->input('id');
 //        $evento->user_id = $request->input('user_id');
         $evento->titolo = $request->input('title');
-        $evento->immagine = $request->file('igiancarlo')->store('immagine');
+        $evento->immagine = $request->file('igiancarlo')->store('/public/storage');
         $evento->descrizione = $request->input('desc');
         $evento->prezzo = $request->input('price');
         $evento->indirizzo = $request->input('ind');

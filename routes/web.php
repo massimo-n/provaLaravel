@@ -25,6 +25,6 @@ Route::get('vedieventi', 'eventController@vediEvento');
 
 
 Route::get('prova',function(){
-    $eventi = \App\Event::where('titolo','=','gianfranco balla')->get();
-    return $eventi;
+    $eventi = \App\Event::all();
+    return view('provafoto',['event'=>$eventi]);
 });
