@@ -18,7 +18,9 @@
     @foreach($event as $evento )
     <tr>
         <td>{{$evento->titolo}}</td>
-        <img src={{$evento->immagine}}>
+        <img src={{asset($evento->immagine)}}>
+        {{--<img src={{asset('storage/upload/yx2Znoy3iRTVl9Alee4agGDU2Y1I04oma6IbAhm8.jpg')}}>--}}
+
     </tr>
 
     @endforeach

@@ -28,3 +28,6 @@ Route::get('prova',function(){
     $eventi = \App\Event::all();
     return view('provafoto',['event'=>$eventi]);
 });
+
+Route::get('/upload', 'FileController@upForm')->name('upload.file');
+Route::post('/upload', 'FileController@storeFile');
