@@ -70,9 +70,12 @@
         <div class="top-right links">
             @auth
                 <a href="{{ url('/home') }}">Home</a>
+                {{--                {{$utente}}--}}
             @else
                 <a href="{{ route('login') }}">Login</a>
                 <a href="{{ route('register') }}">Register</a>
+
+                REGISTRATI BESTIA
             @endauth
         </div>
     @endif
@@ -81,15 +84,27 @@
         <div class="title m-b-md">
             Laravel
         </div>
+        @if (Route::has('login'))
+            @auth
+                <div class="links">
+                    <a href="/insertEvento"> inserisci evento </a>
+                    <a href="/listaEvento"> lista evento </a>
+                    <a href="/insertNewServizio">inserisci servizi eventi</a>
+                    <a href="/listaServizi">lista servizi eventi</a>
+                </div>
 
-        <div class="links">
-            <a href="https://laravel.com/docs">Documentation</a>
-            <a href="https://laracasts.com">Laracasts</a>
-            <a href="https://laravel-news.com">News</a>
-            <a href="https://nova.laravel.com">Nova</a>
-            <a href="https://forge.laravel.com">Forge</a>
-            <a href="https://github.com/laravel/laravel">GitHub</a>
-        </div>
+            @else
+                <div class="links">
+                    <a href="https://laravel.com/docs">Documentation</a>
+                    <a href="https://laracasts.com">Laracasts</a>
+                    <a href="https://laravel-news.com">News</a>
+                    <a href="https://nova.laravel.com">Nova</a>
+                    <a href="https://forge.laravel.com">Forge</a>
+                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                </div>
+            @endauth
+        @endif
+
     </div>
 </div>
 </body>

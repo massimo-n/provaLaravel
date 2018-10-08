@@ -17,11 +17,20 @@ Route::get('/', function () {
 
 Route::get('insertEvento','eventController@creazioneEvento');
 Route::post('aggiungiEvento','eventController@insertEvento');
+Route::get('listaEvento','eventController@listaEvento');
+Route::get('modEvento/{id}','eventController@showEvento');
+Route::post('modificaEvento','eventController@modificaEvento');
+Route::get('deleteEvento/{id}','eventController@deleteEvento');
 
-Route::get('insertServizio','eventController@creazioneServizio');
-Route::post('aggiungiServizio','eventController@insertServizio');
 
-Route::get('vedieventi', 'eventController@vediEvento');
+
+Route::get('insertNewServizio','serviceEvController@creaServizio');
+Route::post('aggiungiServizio','serviceEvController@insertServizio');
+Route::get('listaServizi','serviceEvController@listaServizi');
+Route::get('modServizi/{id}','serviceEvController@visualizzaServizio');
+Route::post('modificaServizi','serviceEvController@modificaServizi');
+Route::get('deleteServizi/{id}','ServiceEvController@eliminaServizio');
+
 
 
 Route::get('prova',function(){
@@ -31,3 +40,12 @@ Route::get('prova',function(){
 
 Route::get('/upload', 'FileController@upForm')->name('upload.file');
 Route::post('/upload', 'FileController@storeFile');
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/logout', function (){
+    Auth::logout();
+
+    return redirect('/');
+});

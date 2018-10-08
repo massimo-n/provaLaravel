@@ -8,64 +8,142 @@ use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
-class eventController extends Controller
-{
+class eventController extends Controller{
 
-    public function creazioneEvento()
-    {
-        $services = \App\Service::all();
-        $events = \App\Event::all();
-        return view('createEvento', ['services' => $services], ['events' => $events]);
+    public function creazioneEvento(){
+
+        //controllo se l'utente è loggato,
+        //cosi per prudenza
+        if(Auth::check()){
+            $services = DB::table('event_services')->get();
+            return view('\event\createEvento',['services'=>$services]);
+        }
+        else{
+            return view('\errors\notLogged');
+        }
     }
 
-    public function vediEvento(){
-        $event = \App\Event::all();
+    public function insertEvento(Request $request){
 
-        return view('provafoto',['events'=>$event]);
+        //controllo se l'utente è loggato,
+        //cosi per prudenza
+
+        if (Auth::check()) {
+
+            //creo oun oggetto evento
+            $evento = new  \App\Event();
+
+            //riprendo l'utente dalla autenticazione
+            $user = Auth::user();
+
+            //sempre dalla auth prendo l'id dell'utente
+            $utente = auth()->user()->getAuthIdentifier();
+
+            //riempio i campi dell'evento nel db
+            $evento->user_id = $utente;
+            $evento->titolo = $request->input('title');
+            if($request->hasFile('igiancarlo')){
+                $evento->immagine = $request->file('igiancarlo')->store('/public/upload');
+            }
+            else{
+                $evento->immagine = 'null';
+            }
+            $evento->descrizione = $request->input('desc');
+            $evento->prezzo = $request->input('price');
+            $evento->indirizzo = $request->input('ind');
+            $evento->dataEvento = $request->input('data');
+            $evento->dataCreazione = $request->input('creazione');
+
+            //collego l'utente che ha creato l'evento con l'evento stesso
+            $user->creates()->save($evento);
+        } else
+            abort(401,'loggati merdaccia');
     }
 
-    public function insertEvento(Request $request)
-    {
-        $evento = new  \App\Event();
-        $utente = new \App\User(['nome' => 'alessio', 'cognome' => 'gionnio', 'indirizzo' => 'si', 'email' => 'shfdgh', 'password' => 'pw']);
-        $utente->save();
-
-        //$evento->id = $request->input('id');
-//        $evento->user_id = $request->input('user_id');
-        $evento->titolo = $request->input('title');
-        $name = $request->file('igiancarlo')->getClientOriginalName();
-        $request->file('igiancarlo')->storeAs('public\upload', $name);
-        $evento->immagine = $name;
-//        $extension = $request->file('photo')->extension();
-//        $path = $request->file('photo')->storeAs('images', 'my_photo.' . $extension);
-        $evento->descrizione = $request->input('desc');
-        $evento->prezzo = $request->input('price');
-        $evento->indirizzo = $request->input('ind');
-//        $evento->dataEvento = $request->input('data');
-        $evento->dataCreazione = $request->input('creazione');
-
-        $utente->save();
-        $utente->creates()->save($evento);
-
-        //$evento->save();
-
+    public function listaEvento(){
+        //controllo se l'utente è loggato,
+        //cosi per prudenza
+        if(Auth::check()){
+            $user = Auth::user()->getAuthIdentifier();
+            $events = DB::table('events')->where('user_id',$user)->get();
+            return view('\event\modifyEvento',['events'=>$events]);
+        }
+        else{
+            return view('\errors\notLogged');
+        }
     }
 
-    public function creazioneServizio()
-    {
-        return view('creazioneServizio');
+    public function showEvento($id){
+        if(Auth::check()){
+            $userId = Auth::user()->getAuthIdentifier();
+            $events = DB::table('events')->where('id',$id)->where('user_id',$userId)->get();
+            if(($events->count())>0) {
+                return view('\event\showEvento', ['events' => $events]);
+            }
+            else{
+                return 'caccos nnè ita bbone';
+            }
+        }
+        else{
+            return view('\errors\notLogged');
+        }
     }
 
-    public function insertServizio(Request $request)
-    {
-        $evento = new \App\Service();
+    public function modificaEvento(Request $request){
 
-        $evento->name = $request->input('name');
-        $evento->description = $request->input('desc');
+        //controllo se l'utente è loggato,
+        //cosi per prudenza
 
+        if (Auth::check()) {
 
-        $evento->save();
+            $utente = Auth::user()->getAuthIdentifier();
+            $id = $request->input('custId');
+            if($request->hasFile('photo')) {
+                $evento = DB::table('events')
+                    ->where('id', $id)
+                    ->where('user_id', $utente)
+                    ->update(['titolo' => $request->input('title'),
+                        'immagine' => $request->file('photo')->store('/public/upload'),
+                        'descrizione' => $request->input('desc'),
+                        'prezzo' => $request->input('price'),
+                        'indirizzo' => $request->input('ind'),
+                        'dataEvento' => $request->input('data'),
+                        'dataCreazione' => $request->input('creazione')]);
+
+                return $this->listaEvento();
+            }
+            else{
+                $evento = DB::table('events')
+                ->where('id', $id)
+                ->where('user_id', $utente)
+                ->update(['titolo' => $request->input('title'),
+//                    'immagine' => $request->file('photo')->store('/public/upload'),
+                    'descrizione' => $request->input('desc'),
+                    'prezzo' => $request->input('price'),
+                    'indirizzo' => $request->input('ind'),
+                    'dataEvento' => $request->input('data'),
+                    'dataCreazione' => $request->input('creazione')]);
+
+                return $this->listaEvento();
+
+            }
+
+        } else
+            abort(401,'loggati merdaccia');
+    }
+
+    public function deleteEvento($id){
+        if (Auth::check()) {
+            $utente = Auth::user()->getAuthIdentifier();
+            $evento = DB::table('events')
+                ->where('id',$id)
+                ->where('user_id',$utente);
+            $evento->delete();
+            return $this->listaEvento();
+        } else
+            abort(401,'loggati merdaccia');
     }
 }
 

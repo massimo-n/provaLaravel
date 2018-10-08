@@ -26,6 +26,7 @@ class CreateEventsTable extends Migration
 //            $table->integer('numero_posti_totali');
 //            $table->integer('numero_posti_disponibili');
 //            $table->date('dataEventoInizio');
+            $table->date('dataEvento');
 //            $table->date('dataEventoFine');
             $table->date('dataCreazione');
             $table->timestamps();
