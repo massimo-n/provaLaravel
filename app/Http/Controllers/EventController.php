@@ -45,7 +45,9 @@ class eventController extends Controller{
             $evento->user_id = $utente;
             $evento->titolo = $request->input('title');
             if($request->hasFile('igiancarlo')){
-                $evento->immagine = $request->file('igiancarlo')->store('/public/upload');
+                $name = $request->file('igiancarlo')->getClientOriginalName();
+                $request->file('igiancarlo')->storeAs('public\upload', $name);
+                $evento->immagine = $name;
             }
             else{
                 $evento->immagine = 'null';
