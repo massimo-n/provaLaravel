@@ -62,6 +62,39 @@
     {{--margin-bottom: 30px;--}}
     {{--}--}}
     {{--</style>--}}
+    <!-- prova mia -->
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon.ico') }}">
+    <!-- google fonts -->
+    <link href='../../../../fonts.googleapis.com/cssdca7.css?family=Lato:400,900,700,300' rel='stylesheet'
+          type='text/css'>
+    <!-- all css here -->
+    <!-- bootstrap v3.3.6 css -->
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <!-- animate css -->
+    <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
+    <!-- jquery-ui.min css -->
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}">
+    <!-- meanmenu css -->
+    <link rel="stylesheet" href="{{ asset('css/meanmenu.min.css') }}">
+    <!-- RS slider css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('lib/rs-plugin/css/settings.css') }}" media="screen" />
+    <!-- owl.carousel css -->
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
+    <!-- font-awesome css -->
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+    <!-- style css -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <!-- responsive css -->
+    <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
+    <!-- color css -->
+    <link class="color-scheme-color" type="text/css" rel="stylesheet" media="all" href="{{ asset('css/theme/color-01.css') }}">
+    <!-- modernizr css -->
+    <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
+    {{--fine prova mia--}}
+<!-- fine prova mia -->
 </head>
 <body>
 

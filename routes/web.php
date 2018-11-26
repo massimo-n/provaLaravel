@@ -12,7 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+//    return view('welcome');
+    return view('layouts/app');
+});
+
+Route::get('index', function () {
+//    return view('welcome');
+    return view('index');
 });
 
 Route::get('insertEvento','eventController@creazioneEvento');
