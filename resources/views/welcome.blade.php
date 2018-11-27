@@ -68,7 +68,7 @@
     <!-- Place favicon.ico in the root directory -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon.ico') }}">
     <!-- google fonts -->
-    <link href='../../../../fonts.googleapis.com/cssdca7.css?family=Lato:400,900,700,300' rel='stylesheet'
+    <link href='https://fonts.googleapis.com/cssdca7.css?family=Lato:400,900,700,300' rel='stylesheet'
           type='text/css'>
     <!-- all css here -->
     <!-- bootstrap v3.3.6 css -->

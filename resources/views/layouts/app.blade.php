@@ -71,12 +71,22 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-8">
                             <div class="top-menu">
-                                <ul>
-                                    <li><a href="my-account.html">My Account</a></li>
-                                    <li><a href="wishlist.html">Wishlist</a></li>
-                                    <li><a href="cart.html">Shopping cart</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
-                                </ul>
+                                @if (Route::has('login'))
+                                        @auth
+                                            <ul>
+                                                <li><a href="my-account.html">My Account</a></li>
+                                                <li><a href="wishlist.html">Wishlist</a></li>
+                                                <li><a href="cart.html">Shopping cart</a></li>
+                                                <li><a href="checkout.html">Checkout</a></li>
+                                                <li><a href="{{ route('logout') }}">Logout</a></li>
+                                            </ul>
+                                        @else
+                                            <ul>
+                                                <li><a href="{{ route('login') }}">Login</a></li>
+                                                <li><a href="{{ route('register') }}">Register</a></li>
+                                            </ul>
+                                        @endauth
+                                @endif
                             </div>
                         </div>
                     </div>
