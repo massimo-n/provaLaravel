@@ -95,7 +95,7 @@
                             Login</h2>
                         <p>
                             <label>
-                                Eemail address <span class="required">*</span></label>
+                                Email address <span class="required">*</span></label>
                             <input type="email"
                                    class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                                    name="email" value="{{ old('email') }}" required autofocus/>
