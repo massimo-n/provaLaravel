@@ -12,7 +12,20 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+//    return view('welcome');
+    return view('layouts/app');
+});
+
+//Route::get('/', function () {
+////    return view('welcome');
+//});
+
+Route::get('/index', function () {
+    return view('index');
+});
+
+Route::get('/cart', function () {
+    return view('cart');
 });
 
 Route::get('insertEvento','eventController@creazioneEvento');
@@ -44,8 +57,9 @@ Route::post('/upload', 'FileController@storeFile');
 Route::auth();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/logout', function (){
     Auth::logout();
 
-    return redirect('/');
+    return redirect('/index');
 });
