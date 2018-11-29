@@ -35,7 +35,7 @@ Route::get('modEvento/{id}','eventController@showEvento');
 Route::post('modificaEvento','eventController@modificaEvento');
 Route::get('deleteEvento/{id}','eventController@deleteEvento');
 
-
+//commit
 Route::get('insertNewCategory','categoryController@richiamaCategoriaPage');
 Route::post('aggiungiCategoria','categoryController@inserisciCategoria');
 Route::get('listaCategorie','categoryController@listaCategoria');
