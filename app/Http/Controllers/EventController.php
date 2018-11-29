@@ -60,8 +60,19 @@ class eventController extends Controller{
 
             //collego l'utente che ha creato l'evento con l'evento stesso
             $user->creates()->save($evento);
+            $id = $evento->id;
+
+            return $this->redirectEventService($id);
+
         } else
             abort(401,'loggati merdaccia');
+    }
+
+    public function redirectEventService($id){
+        $services = DB::table('event_services')->get();
+        $events = DB::table('events')->where('id',$id)->get();
+//        return $events;
+        return view('\event\bindEventoServizio',['services'=>$services,'events'=>$events]);
     }
 
     public function listaEvento(){

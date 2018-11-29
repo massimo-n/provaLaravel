@@ -70,6 +70,7 @@
         <div class="top-right links">
             @auth
                 <a href="{{ url('/home') }}">Home</a>
+                <a href="{{ url('/logout') }}">logout</a>
                 {{--                {{$utente}}--}}
             @else
                 <a href="{{ route('login') }}">Login</a>
@@ -91,6 +92,8 @@
                     <a href="/listaEvento"> lista evento </a>
                     <a href="/insertNewServizio">inserisci servizi eventi</a>
                     <a href="/listaServizi">lista servizi eventi</a>
+                    <a href="/insertNewCategory">inserisci nuova categoria</a>
+                    <a href="/listaCategorie">lista categorie</a>
                 </div>
 
             @else

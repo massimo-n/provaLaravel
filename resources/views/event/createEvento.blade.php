@@ -17,9 +17,9 @@
 
         <form action = "/aggiungiEvento" method = "post" enctype="multipart/form-data">
             <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
-            @foreach($services as $service)
-                <p>{{$service->servizio_evento}}</p>
-            @endforeach
+            {{--@foreach($services as $service)--}}
+                {{--<p>{{$service->servizio_evento}}</p>--}}
+            {{--@endforeach--}}
             <table>
                 <tr>
                     <td>titolo</td>

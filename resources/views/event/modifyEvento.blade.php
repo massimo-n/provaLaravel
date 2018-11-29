@@ -39,7 +39,7 @@
                     <td>
                         <div class="prova">
                             <a href="{{URL('/modEvento/'.$event->id)}}">modifica</a>
-                            <a href="{{URL('/deleteEvento/'.$event->id)}}">modifica</a>
+                            <a href="{{URL('/deleteEvento/'.$event->id)}}">elimina</a>
                         </div>
                     </td>
                 </tr>

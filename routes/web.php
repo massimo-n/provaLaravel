@@ -23,6 +23,13 @@ Route::post('modificaEvento','eventController@modificaEvento');
 Route::get('deleteEvento/{id}','eventController@deleteEvento');
 
 
+Route::get('insertNewCategory','categoryController@richiamaCategoriaPage');
+Route::post('aggiungiCategoria','categoryController@inserisciCategoria');
+Route::get('listaCategorie','categoryController@listaCategoria');
+Route::get('modCategoria/{id}','categoryController@showCategoria');
+Route::post('modificaCategoria','categoryController@modificaCategoria');
+Route::get('deleteCcategoria/{id}','categoryController@deleteCategoria');
+
 
 Route::get('insertNewServizio','serviceEvController@creaServizio');
 Route::post('aggiungiServizio','serviceEvController@insertServizio');
@@ -31,6 +38,8 @@ Route::get('modServizi/{id}','serviceEvController@visualizzaServizio');
 Route::post('modificaServizi','serviceEvController@modificaServizi');
 Route::get('deleteServizi/{id}','ServiceEvController@eliminaServizio');
 
+
+Route::get('insertUtente','utenteController@inserisciDati');
 
 
 Route::get('prova',function(){
