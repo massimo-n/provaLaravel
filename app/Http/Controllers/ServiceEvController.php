@@ -93,4 +93,8 @@ class serviceEvController extends Controller{
 
     }
 
+    public function associaServizi(Request $request){
+        return $request;
+    }
+
 }

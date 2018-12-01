@@ -49,6 +49,7 @@
     <link class="color-scheme-color" type="text/css" rel="stylesheet" media="all" href="{{ asset('css/theme/color-01.css') }}">
     <!-- modernizr css -->
     <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
+    @yield('script')
 </head>
 <body class="home-1">
 

@@ -11,14 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-//    return view('welcome');
-    return view('layouts/app');
-});
-
 //Route::get('/', function () {
 ////    return view('welcome');
+//    return view('layouts/app');
 //});
+
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::get('/index', function () {
     return view('index');
@@ -50,6 +50,7 @@ Route::get('listaServizi','serviceEvController@listaServizi');
 Route::get('modServizi/{id}','serviceEvController@visualizzaServizio');
 Route::post('modificaServizi','serviceEvController@modificaServizi');
 Route::get('deleteServizi/{id}','ServiceEvController@eliminaServizio');
+Route::get('associaServizi','ServiceEvController@associaServizi');
 
 
 Route::get('insertUtente','utenteController@inserisciDati');
