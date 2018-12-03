@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Auth;
 
 class categoryController extends Controller{
 
+    function __construct(){
+        $this->middleware('auth');
+    }
+
     public function richiamaCategoriaPage(){
         if(Auth::check()){
             return view('\category\categoriaPage');
@@ -20,6 +24,8 @@ class categoryController extends Controller{
             return 'danni';
         }
     }
+
+
 
     public function inserisciCategoria(Request $request){
         if (Auth::check()) {
@@ -93,6 +99,11 @@ class categoryController extends Controller{
             return $this->listaCategoria();
         } else
             abort(401,'loggati merdaccia');
+    }
+
+    public function all(){
+        $categories = DB::table('event_categories')->get();
+        return $categories;
     }
 
 }

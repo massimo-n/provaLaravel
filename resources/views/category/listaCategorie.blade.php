@@ -30,7 +30,7 @@
                 <td>
                     <div class="prova">
                         <a href="{{URL('/modCategoria/'.$category->id)}}">modifica</a>
-                        <a href="{{URL('/deleteEvento/'.$category->id)}}">elimina</a>
+                        <a href="{{URL('/deleteCategoria/'.$category->id)}}">elimina</a>
                     </div>
                 </td>
             </tr>

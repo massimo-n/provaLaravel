@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use App\Image;
 use Illuminate\Http\Request;
 
-class ImageController extends Controller
-{
+class ImageController extends Controller{
+
+    function __construct(){
+        $this->middleware('auth');
+    }
+
     public function upForm(){
         return view('upload');
     }

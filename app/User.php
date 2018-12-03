@@ -37,6 +37,6 @@ class User extends Authenticatable
     }
 
     public function review(){
-        return $this->belongsToMany('\App\Event');
+        return $this->belongsToMany('\App\Event', 'userReview')->withPivot('review');
     }
 }

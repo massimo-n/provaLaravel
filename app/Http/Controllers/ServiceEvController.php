@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class serviceEvController extends Controller{
 
+    function __construct(){
+        $this->middleware('auth');
+    }
+
     public function creaServizio(){
         //controllo se l'utente è loggato,
         //cosi per prudenza

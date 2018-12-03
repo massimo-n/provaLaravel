@@ -72,7 +72,7 @@
                     @if (Route::has('login'))
                         @auth
                             <ul>
-                                <li><a href="my-account.html">My Account</a></li>
+                                <li><a href="/userDetails">My Account</a></li>
                                 <li><a href="wishlist.html">Wishlist</a></li>
                                 <li><a href="{{ url('cart') }}">Shopping cart</a></li>
                                 <li><a href="checkout.html">Checkout</a></li>
@@ -141,6 +141,9 @@
                                 <option value="0">Travel and Coupons</option>
                                 <option value="0">Security &amp; Protection</option>
                                 <option value="0">In All Categories</option>
+
+
+
                             </select>
                             <input type="text" placeholder="search product..." />
                             <button><i class="fa fa-search"></i></button>
