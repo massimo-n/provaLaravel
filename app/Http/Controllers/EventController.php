@@ -71,8 +71,9 @@ class eventController extends Controller{
     public function redirectEventService($id){
         $services = DB::table('event_services')->get();
         $events = DB::table('events')->where('id',$id)->get();
+        $idEvento = $id;
 //        return $events;
-        return view('\event\bindEventoServizio',['services'=>$services,'events'=>$events]);
+        return view('\event\bindEventoServizio',['services'=>$services,'events'=>$events, 'idEvento'=>$idEvento]);
     }
 
     public function listaEvento(){
