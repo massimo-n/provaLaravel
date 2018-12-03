@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Event;
+use App\Service;
+use App\Http\Controllers\Controller;
+use App\EventService;
+use PhpParser\Node\Expr\Cast\Object_;
 
 class serviceEvController extends Controller{
 
@@ -94,7 +99,16 @@ class serviceEvController extends Controller{
     }
 
     public function associaServizi(Request $request){
-        return $request;
+        $idEvento = $request->input('idEvento');
+        $idServizio = $request->input('$idServizio');
+        $evento = DB::table('events')->where('id',$idEvento)->first();
+
+        $evento1=new \App\Event($evento);
+        $evento1->services()->attach($idServizio);
+
+        $servizio = DB::table('event_services')->where('id',$idServizio)->first();
+
+        return view('');
     }
 
 }

@@ -26,7 +26,7 @@ Route::get('/index', function () {
 
 Route::get('/cart', function () {
     return view('cart');
-});
+})->name('cart');
 
 Route::get('insertEvento','eventController@creazioneEvento');
 Route::post('aggiungiEvento','eventController@insertEvento');
