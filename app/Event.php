@@ -27,10 +27,8 @@ class Event extends Model
     }
 
     public function review(){
-        return $this->belongsToMany('\App\User');
+        return $this->belongsToMany('\App\User','userReview')->withPivot('review');
     }
-
-
 
 
 }

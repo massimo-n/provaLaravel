@@ -41,7 +41,7 @@ Route::post('aggiungiCategoria','categoryController@inserisciCategoria');
 Route::get('listaCategorie','categoryController@listaCategoria');
 Route::get('modCategoria/{id}','categoryController@showCategoria');
 Route::post('modificaCategoria','categoryController@modificaCategoria');
-Route::get('deleteCcategoria/{id}','categoryController@deleteCategoria');
+Route::get('deleteCategoria/{id}','categoryController@deleteCategoria');
 
 
 Route::get('insertNewServizio','serviceEvController@creaServizio');
@@ -52,9 +52,12 @@ Route::post('modificaServizi','serviceEvController@modificaServizi');
 Route::get('deleteServizi/{id}','ServiceEvController@eliminaServizio');
 Route::get('associaServizi','ServiceEvController@associaServizi');
 
+Route::get('userDetails','UserController@datiUtente');
+Route::post('modificaUtente','UserController@modificaDati');
+Route::get('deleteUser','UserController@eliminaProfilo');
 
-Route::get('insertUtente','utenteController@inserisciDati');
-
+Route::get('recensione/{id}','UserReviewController@recensione');
+Route::post('aggiungiRecensione','UserReviewController@aggiungiRecensione');
 
 Route::get('prova',function(){
     $eventi = \App\Event::all();

@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@if($errors->any())
+    <h4>{{$errors->first()}}</h4>
+@endif
+
+{{--errori o messaggi a schermo--}}
+
 @section('content')
 
     <div class="box-page">
@@ -81,4 +87,26 @@
             </div>
         </div>
     </div>
+
+
+
+    @if (Route::has('login'))
+        @auth
+
+                <a href="/insertEvento"> inserisci evento </a><br>
+                <a href="/listaEvento"> lista evento </a><br>
+                <a href="/insertNewServizio">inserisci servizi eventi</a><br>
+                <a href="/listaServizi">lista servizi eventi</a><br>
+                <a href="/insertNewCategory">inserisci nuova categoria</a><br>
+                <a href="/listaCategorie">lista categorie</a><br>
+        @else
+                <a href="https://laravel.com/docs">Documentation</a><br>
+                <a href="https://laracasts.com">Laracasts</a><br>
+                <a href="https://laravel-news.com">News</a><br>
+                <a href="https://nova.laravel.com">Nova</a><br>
+                <a href="https://forge.laravel.com">Forge</a><br>
+                <a href="https://github.com/laravel/laravel">GitHub</a><br>
+        @endauth
+    @endif
+
 @endsection

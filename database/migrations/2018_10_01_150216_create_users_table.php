@@ -18,10 +18,20 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('nome');
             $table->string('cognome');
-            $table->string('indirizzo');
-            //$table->date('compleanno');
             $table->string('email')->unique();
-            $table->string('password');
+
+//            lo mettiamo temporaneo nella vista?
+//            $table->integer('numeroCarta')->unique();
+//            $table->string('pagamentoPreferito');
+//            $table->date('scadenzaCarta');
+
+            $table->string('paese')->nullable();
+            $table->string('indirizzo')->default('');
+            $table->string('indirizzo1')->default('');
+            $table->string('citta')->default('');
+            $table->string('provincia')->default('');
+            $table->integer('cap')->default(0);
+            $table->string('password')->default('');
             $table->rememberToken();
 
             $table->timestamps();
