@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Event;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+
 
 class UserReviewController extends Controller{
 
@@ -18,20 +21,21 @@ class UserReviewController extends Controller{
 
     public function aggiungiRecensione(Request $request){
 
-        $userId = Auth::id();
-        $user = Auth::user();
         $eventId = $request->input('eventId');
-        $event = DB::table('events')->where('id',$eventId)->first();
-        $event1 = new \App\Event($event);
 
+        $event = Event::find($eventId);
 
+        $utente = Auth::user();
+        $utenteId = Auth::id();
 
-//        $review = DB::table('userreview')
-//            ->where('event_id',$eventId)
-//            ->where('user_id',$userId)
-//            ->update(['review',$request->input('review')]);
+        $utente->review()->save($event);
 
+        $review = DB::table('userreview')
+            ->where('event_id',$eventId)
+            ->where('user_id',$utenteId)
+            ->update(['review'=>$request->input('review')]);
 
+        return 'true';
     }
 
 }

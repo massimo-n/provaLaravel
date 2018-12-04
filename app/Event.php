@@ -4,8 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Event extends Model
-{
+class Event extends \Eloquent {
+
+    protected $fillable = ['0'];
+
     public function partecipates(){
         return $this->belongsToMany('\App\User');
     }
