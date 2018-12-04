@@ -17,7 +17,8 @@
                     data: {"_token ": "{{csrf_token()}}",
                         // idEvento: $('table').attr('id'),
                         idEvento: '{{$idEvento}}', //possibili problemi di sicurezza, vedere pure il metodo a event controller riga 74
-                        idServizio: $(this).attr('id')
+                        idServizio: $(this).attr('id'),
+                        associatedServices: '{{$associatedServices}}'
                     },
                     success:function(data){
                         console.log(data);
