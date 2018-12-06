@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Event;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -13,9 +14,9 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct(){
-        $this->middleware('auth')->except('index','logout');
-    }
+//    public function __construct(){
+//        $this->middleware('auth')->except('index','logout');
+//    }
 
     /**
      * Show the application dashboard.
@@ -24,8 +25,8 @@ class HomeController extends Controller
      */
     public function index(){
 
-        $categories = DB::table('event_categories')->get();
-        return view('index');
+        $eventi = Event::all();
+        return view('/index',['eventi'=>$eventi]);
 //        return view('index',['categories'=>$categories]);
     }
 

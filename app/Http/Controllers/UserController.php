@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -51,14 +52,17 @@ class UserController extends Controller{
 
             $user = Auth::user();
             Auth::logout();
-            if($user->delete())
-                return view('index')->withErrors(['Utente eliminato :)']);
-
-            else
-                return redirect()->to('/userDetails')->withErrors(['Ci sono stati problemi']);
-
-
-
+            try {
+                if ($user->delete()){
+                    $eventi = Event::all();
+                    return view('/index',['eventi'=>$eventi])->withErrors(['Utente eliminato :)']);
+                }
+                else
+                    return redirect()->to('/userDetails')->withErrors(['Ci sono stati problemi']);
+            }
+            catch (\Exception $e) {
+                return $e;
+            }
         }
     }
 

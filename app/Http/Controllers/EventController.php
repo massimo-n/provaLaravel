@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Auth;
 class eventController extends Controller{
 
     function __construct(){
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => array('listaAllEventi','dettagliEvento')]);
+//        $this->middleware('auth', ['except' => array('getActivate', 'getLogin')]);
     }
 
     public function creazioneEvento(){
@@ -92,6 +93,11 @@ class eventController extends Controller{
         }
     }
 
+    public function listaAllEventi(){
+        $eventi = Event::all();
+        return view('/index',['eventi'=>$eventi]);
+    }
+
     public function showEvento($id){
         if(Auth::check()){
             $userId = Auth::user()->getAuthIdentifier();
@@ -107,6 +113,20 @@ class eventController extends Controller{
             return view('\errors\notLogged');
         }
     }
+
+    public function dettagliEvento($id){
+
+            $events = Event::find($id);
+            $event = DB::table('events')->where('id',$id)->get();
+
+                if(($event->count())>0) {
+                    return view('\event\dettagliEvento', ['events' => $event]);
+                }
+                else{
+                    return 'caccos nnè ita bbone';
+                }
+            }
+
 
     public function modificaEvento(Request $request){
 

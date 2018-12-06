@@ -11,18 +11,12 @@
 |
 */
 
-//Route::get('/', function () {
-////    return view('welcome');
-//    return view('layouts/app');
-//});
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/index', function () {
-    return view('index');
-});
+Route::get('/','eventController@listaAllEventi');
+Route::get('/index','eventController@listaAllEventi');
+Route::get('/home', 'eventController@listaAllEventi');
+
 
 Route::get('/cart', function () {
     return view('cart');
@@ -31,6 +25,7 @@ Route::get('/cart', function () {
 Route::get('insertEvento','eventController@creazioneEvento');
 Route::post('aggiungiEvento','eventController@insertEvento');
 Route::get('listaEvento','eventController@listaEvento');
+Route::get('dettagliEvento/{id}','eventController@dettagliEvento');
 Route::get('modEvento/{id}','eventController@showEvento');
 Route::post('modificaEvento','eventController@modificaEvento');
 Route::get('deleteEvento/{id}','eventController@deleteEvento');
@@ -59,6 +54,10 @@ Route::get('deleteUser','UserController@eliminaProfilo');
 Route::get('recensione/{id}','UserReviewController@recensione');
 Route::post('aggiungiRecensione','UserReviewController@aggiungiRecensione');
 
+
+
+
+
 Route::get('prova',function(){
     $eventi = \App\Event::all();
     return view('provafoto',['event'=>$eventi]);
@@ -69,10 +68,11 @@ Route::post('/upload', 'FileController@storeFile');
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/logout', function (){
-    Auth::logout();
+Route::get('/logout', 'HomeController@logout');
 
-    return redirect('/index');
-});
+//Route::get('/logout', function (){
+//    Auth::logout();
+//
+//    return redirect('/index');
+//});

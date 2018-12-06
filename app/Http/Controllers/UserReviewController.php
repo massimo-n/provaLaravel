@@ -28,6 +28,7 @@ class UserReviewController extends Controller{
         $utente = Auth::user();
         $utenteId = Auth::id();
 
+
         $utente->review()->save($event);
 
         $review = DB::table('userreview')
