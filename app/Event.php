@@ -17,7 +17,7 @@ class Event extends \Eloquent {
     }
 
     public function services(){
-        return $this->belongsToMany('\App\EventService');
+        return $this->belongsToMany('\App\EventService', 'event_eventservice');
     }
 
     public function favourites(){
@@ -32,5 +32,8 @@ class Event extends \Eloquent {
         return $this->belongsToMany('\App\User','userReview')->withPivot('review');
     }
 
+    public function type(){
+        return $this->belongsToMany('\App\EventType', 'types');
+    }
 
 }

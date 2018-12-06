@@ -105,14 +105,16 @@ class serviceEvController extends Controller{
     public function associaServizi(Request $request){
         $idEvento = $request->input('idEvento');
         $idServizio = $request->input('$idServizio');
-        $evento = DB::table('events')->where('id',$idEvento)->first();
+        $evento = Event::find($idEvento);
 
-        $evento1=new \App\Event($evento);
-        $evento1->services()->attach($idServizio);
+
+        $evento->services()->attach($idServizio);
 
         $servizio = DB::table('event_services')->where('id',$idServizio)->first();
 
-        return view('');
+        \Log::info('ids');
+
+        return $evento;
     }
 
 }

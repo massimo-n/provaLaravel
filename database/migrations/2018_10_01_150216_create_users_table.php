@@ -8,7 +8,7 @@ class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     * i dati del pagamento non li gestiamo cosi se rubbano il db non abbiamo danni
      * @return void
      */
     public function up()
@@ -19,18 +19,10 @@ class CreateUsersTable extends Migration
             $table->string('nome');
             $table->string('cognome');
             $table->string('email')->unique();
-
-//            lo mettiamo temporaneo nella vista?
-//            $table->integer('numeroCarta')->unique();
-//            $table->string('pagamentoPreferito');
-//            $table->date('scadenzaCarta');
-
-            $table->string('paese')->nullable();
-            $table->string('indirizzo')->default('');
-            $table->string('indirizzo1')->default('');
-            $table->string('citta')->default('');
-            $table->string('provincia')->default('');
-            $table->integer('cap')->default(0);
+            $table->integer('images_id')->unsigned();
+            $table->foreign('images_id')->references('id')->on('images')->onDelete('cascade');
+            $table->integer('address_id')->unsigned();
+            $table->foreign('address_id')->references('id')->on('address')->onDelete('cascade');
             $table->string('password')->default('');
             $table->rememberToken();
 
